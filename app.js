@@ -25,14 +25,23 @@ app.use('/static', express.static(__dirname + '/static'));
 /****END OF NO NEED TO MODIFY SECTION ******/
 
 
-// Define your routes here
+// Get homepage
 app.get('/', function (req, res, next) {
-    res.render("index.html");        
+    res.render("home.html");        
 });
-app.get('/contactus', function(req,res) {
-  res.render("contactus.html");
-  var subject = req.body.subject;
-  youTube.search(subject, 2, function(error, result, body) {
+
+//Upon submitting form, send get request to MOOCS APIs
+app.get('/search', function(req,res,next){
+  var name = req.params.name;
+  var query = req.params.query;
+  var results = [] //array to add up all results (can also be a different format, what works best)
+
+// Add requests for each API that is checked
+
+//Youtube
+//Add if-statement for checked or not 
+
+youTube.search(subject, 2, function(error, result, body) {
   if (error) {
     console.log(error);
   }
@@ -41,51 +50,33 @@ app.get('/contactus', function(req,res) {
     json_body = JSON.parse(body);
     var videoId = json_body.data[1].result;
     //var content = json_body.data[0].content; 
-    res.render("contactus.html", {
-      video_search_results: "https://www.youtube.com/watch?v=" + videoId
-    });
-  }
-});                       
-});
 
-
-
-app.get('/aboutus', function (req, res) {
-  res.render("aboutus.html");
-});
-app.get('/contactus', function(req,res) {
-  res.render("contactus.html");
-});
-app.post('/contactus', function(req,res) {
-  
-  console.log("Received POST for Contact Form");
-  emailAddr = req.body.emailAddr;
-  console.log("Sending email to myself");
-  var name = req.body.name;
-  res.render("contactus.html", {
-    submit_notice: 'Hi ' + name + ' your message has been sent'
+    //this rendering should only be done after all results are gathered
+    // res.render("contactus.html", {
+    video_search_results: "https://www.youtube.com/watch?v=" + videoId;
+    //  });
+    }
   });
-});
 
-app.get('/blog/what-productivity-systems-wont-solve', function(req,res) {
-  request({ // put this app.get for each blog entry 
-    url: 'http://localhost:3001/blog?slug=what-productivity-systems-wont-solve',
-    method: 'GET',
-    headers: {
-      'Content-Type':"application/json"
-    },
-      
-  }, function(error, response, body){
-      if(error) {
-          console.log(error);
-      } else {
-          console.log(response.statusCode, body);
-          json_body = JSON.parse(body);
-          var title = json_body.data[0].title;
-          var content = json_body.data[0].content; 
-          res.render("5wont_solve.html",{"title":title,"content":content});        
-      }
-});
+
+//EdX
+//Add if-statement for checked or not 
+
+//Udemy
+//Add if-statement for checked or not 
+
+//Khan Academy
+//Add if-statement for checked or not 
+
+//Coursera 
+//Add if-statement for checked or not 
+
+//Udacity (not entirely clear from API overview spreadsheet whether this is possible)
+//Add if-statement for checked or not 
+
+
+//Render page with all results 
+res.render("home.html", {results: 'results'})
 });
 
 

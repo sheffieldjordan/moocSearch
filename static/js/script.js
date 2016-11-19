@@ -1,4 +1,4 @@
-
+/* add function for required fields in query form */
 
 
 function processForm(){  
