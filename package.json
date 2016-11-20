@@ -21,6 +21,7 @@
     "body-parser": "^1.15.2",
     "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
+    "khan": "^0.1.7",
     "multer": "^1.2.0",
     "mustache-express": "^1.2.2",
     "request": "^2.75.0"

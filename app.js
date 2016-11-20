@@ -12,6 +12,8 @@ var YouTube = require('youtube-node');
 var youTube = new YouTube();
 youTube.setKey('AIzaSyASBTPnt-OJlLc3ey0SMhiU38a2THSsnP4');
 
+var khan = require('khan');
+
 app.engine('html', mustacheExpress());
 app.set('view engine', 'mustache');
 app.set('views', __dirname + '/views');
@@ -41,7 +43,8 @@ app.get('/search', function(req,res,next){
 //Youtube
 //Add if-statement for checked or not 
 
-youTube.search(subject, 2, function(error, result, body) {
+//request to youTube API
+youTube.search(query, 2, function(error, result, body) {
   if (error) {
     console.log(error);
   }
@@ -60,19 +63,31 @@ youTube.search(subject, 2, function(error, result, body) {
 
 
 //EdX
-//Add if-statement for checked or not 
+//Add if-statement for checked or not here
+//Add request to API here
 
 //Udemy
-//Add if-statement for checked or not 
+//Add if-statement for checked or not here
+//Add request to API here
 
 //Khan Academy
 //Add if-statement for checked or not 
+//Add request to API here
+
+function getVideo(query) {
+  var khan_results = khan.topicVideos(query);
+  console.log(khan_results);
+
+}
 
 //Coursera 
-//Add if-statement for checked or not 
+//Add if-statement for checked or not here
+//Add request to API here
+
 
 //Udacity (not entirely clear from API overview spreadsheet whether this is possible)
 //Add if-statement for checked or not 
+//Add request to API here
 
 
 //Render page with all results 
