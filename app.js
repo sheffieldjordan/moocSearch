@@ -35,20 +35,23 @@ app.get('/', function (req, res, next) {
 app.post('/', function(req,res,next){
   var name = req.body.name;
   var courses = req.body.courses;
-  var results = req.body.searchoptions
-  // var results = [] //array to add up all results (can also be a different format, what works best)
+  var options = req.body.searchoptions
+  var results = [] //array to add up all results (can also be a different format, what works best)
+  
   console.log("Variables");
   console.log(name);
   console.log(courses);
+  console.log(options);
   console.log(results);
 
-
 // Add requests for each API that is checked
+for(var i=0; i < options.length; i++){
 
 //Youtube
-//Add if-statement for checked or not 
-
-//request to youTube API
+//Check if this MOOC provider is checked
+if(options[i] === 'youtube'){
+  console.log("Search YouTube");
+  //request to youTube API
 // youTube.search(query, 2, function(error, result, body) {
 //   if (error) {
 //     console.log(error);
@@ -58,47 +61,73 @@ app.post('/', function(req,res,next){
 //     json_body = JSON.parse(body);
 //     var videoId = json_body.data[1].result;
 //     //var content = json_body.data[0].content; 
-
-//     //this rendering should only be done after all results are gathered
-//     // res.render("contactus.html", {
-//     video_search_results: "https://www.youtube.com/watch?v=" + videoId;
-//     //  });
 //     }
-});
-
+}
 
 //EdX
-//Add if-statement for checked or not here
+//Check if this MOOC provider is checked
+ if(options[i] === 'edX'){
+  console.log("Search edX");
 //Add request to API here
+ }
 
 //Udemy
-//Add if-statement for checked or not here
+//Check if this MOOC provider is checked
+ if(options[i] === 'udemy'){
+  console.log("Search Udemy");
 //Add request to API here
+
+ }
 
 //Khan Academy
-//Add if-statement for checked or not 
+//Check if this MOOC provider is checked
+ if(options[i] === 'khanAcademy'){
+  console.log("Search Khan Academy");
 //Add request to API here
-
-// function getVideo(query) {
-//   var khan_results = khan.topicVideos(query);
-//   console.log(khan_results);
-
-// }
+ }
 
 //Coursera 
-//Add if-statement for checked or not here
+//Check if this MOOC provider is checked
+  if(options[i] === 'coursera'){
+    console.log("Search Coursera");
+    var coursera_results = [];
+    var query_url = 'https://api.coursera.org/api/courses.v1?q=search&query='+courses+'&includes=name,description,photoUrl,previewLink&fields=name,description,photoUrl,previewLink';
+
+    request({
+      url: query_url,
+      method: 'GET',
+      }, function(error, response, body){
+        if(error) {
+          console.log(error);
+      } else {
+          console.log(response.statusCode);
+          json_body = JSON.parse(body);
+          console.log(json_body);
+          var name = json_body.elements[0].name;
+          var courseUrl = json_body.elements[0].previewLink;
+          var imageUrl = json_body.elements[0].photoUrl;
+          var description = json_body.elements[0].description;
+          console.log(name, courseUrl, imageUrl, description);
+          coursera_results.push(name, courseUrl, imageUrl, description);
+          results.push(coursera_results);
+          console.log(results);
+      }
+    });
+  }
+
+//Udacity
+//Check if this MOOC provider is checked
+ if(options[i] === 'udacity'){
+  console.log("Search Udacity");
 //Add request to API here
+ }
 
-
-//Udacity (not entirely clear from API overview spreadsheet whether this is possible)
-//Add if-statement for checked or not 
-//Add request to API here
-
+//End For-loop
+}
 
 //Render page with all results 
-// res.render("home.html", {results: 'results'})
-// });
-
+res.render("home.html", {'results': results});
+});
 
 // Start up server on port 3000 on host localhost
 var server = app.listen(3000, function () {

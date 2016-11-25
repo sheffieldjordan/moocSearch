@@ -12,11 +12,11 @@
 		</header>
 
 <!--Implement form elements here (id searchForm)-->
-		<form action="/search" method="GET" id="searchForm">
+		<form action="/" method="POST" id="searchForm">
 			<label>Name: </label>
 			<input type="text" name="name" /><br>
 			<label>Query: </label>
-			<input type="text" name="query" /><br>
+			<input type="text" name="courses" /><br>
 			<label>Moocs: </label>
 			<input type="checkbox" name="searchoptions" value="youtube" checked />Youtube<br>
 			<input type="checkbox" name="searchoptions" value="coursera" checked />Coursera<br>
@@ -28,7 +28,8 @@
 		</form>
 
 <!--Add mustache variables for results -->		
-
+		
+		<div id="results">{{{results}}}</div>
 		<footer>
 
 		</footer>
