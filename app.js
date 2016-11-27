@@ -1,15 +1,15 @@
   /******NO NEED TO MODIFY ****/
 var express = require('express'); // Adding the express library 
 var mustacheExpress = require('mustache-express'); // Adding mustache templating system and connecting it to 
-var request = require('request')  // Adding the request library (to make HTTP reqeusts from the server);
+var request = require('request');  // Adding the request library (to make HTTP reqeusts from the server);
 var tools = require('./tools.js'); // Custom module providing additional functionality to the server
 var bodyParser = require('body-parser');
 
 var app = express(); // initializing applicaiton
 
-// var YouTube = require('youtube-node');
-// var youTube = new YouTube();
-// youTube.setKey('AIzaSyASBTPnt-OJlLc3ey0SMhiU38a2THSsnP4');
+var YouTube = require('youtube-node');
+var youTube = new YouTube();
+youTube.setKey('AIzaSyASBTPnt-OJlLc3ey0SMhiU38a2THSsnP4');
 
 // var khan = require('khan');
 
@@ -35,8 +35,8 @@ app.get('/', function (req, res, next) {
 app.post('/', function(req,res,next){
   var name = req.body.name;
   var courses = req.body.courses;
-  var options = req.body.searchoptions
-  var results = [] //array to add up all results (can also be a different format, what works best)
+  var options = req.body.searchoptions;
+  var results = []; //array to add up all results (can also be a different format, what works best)
   
   console.log("Variables");
   console.log(name);
@@ -51,18 +51,26 @@ for(var i=0; i < options.length; i++){
 //Check if this MOOC provider is checked
 if(options[i] === 'youtube'){
   console.log("Search YouTube");
-  //request to youTube API
-// youTube.search(query, 2, function(error, result, body) {
-//   if (error) {
-//     console.log(error);
-//   }
-//   else {
-//     console.log(JSON.stringify(result, null, 2));
-//     json_body = JSON.parse(body);
-//     var videoId = json_body.data[1].result;
-//     //var content = json_body.data[0].content; 
-//     }
-}
+  youTube.search(courses, 5, function(error, result, body) {
+  var youTubeResp = result;
+  if (error) {
+    console.log(error);
+  }
+  else {
+    //console.log(JSON.stringify(result, null, 5));
+    json_body = JSON.stringify(youTubeResp);
+    json_parsed = JSON.parse(json_body);
+    for (var i = 0; i < 5; i++) { 
+      var youTubeUrl = "https://www.youtube.com/embed/" + json_parsed.items[i].id.videoId;
+      var youTubeTitle = json_parsed.items[i].snippet.title;
+      var youTubeDescr = json_parsed.items[i].snippet.description; 
+
+      results.push(["YouTube: " + youTubeTitle, youTubeUrl, youTubeDescr]);
+    }
+  }
+  }
+                )};
+
 
 //EdX
 //Check if this MOOC provider is checked
@@ -102,12 +110,12 @@ if(options[i] === 'youtube'){
       } else {
           console.log(response.statusCode);
           json_body = JSON.parse(body);
-          console.log(json_body);
+          //console.log(json_body);
           var name = json_body.elements[0].name;
           var courseUrl = json_body.elements[0].previewLink;
           var imageUrl = json_body.elements[0].photoUrl;
           var description = json_body.elements[0].description;
-          console.log(name, courseUrl, imageUrl, description);
+          //console.log(name, courseUrl, imageUrl, description);
           coursera_results.push(name, courseUrl, imageUrl, description);
           results.push(coursera_results);
           console.log(results);
@@ -123,7 +131,7 @@ if(options[i] === 'youtube'){
  }
 
 //End For-loop
-}
+};
 
 //Render page with all results 
 res.render("home.html", {'results': results});
@@ -133,6 +141,6 @@ res.render("home.html", {'results': results});
 var server = app.listen(3000, function () {
   var port = server.address().port;
 
-  console.log('Assignment 3 server on localhost listening on port ' + port + '!');
+  console.log('moocSearch server on localhost listening on port ' + port + '!');
   console.log('Open up your browser (within your VM) and enter the URL "http://localhost:' + port + '" to view your website!');
 });
