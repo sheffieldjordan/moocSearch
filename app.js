@@ -92,6 +92,31 @@ if(options[i] === 'youtube'){
  if(options[i] === 'khanAcademy'){
   console.log("Search Khan Academy");
 //Add request to API here
+  youTube.khanSearch(courses,  5, function(error, result, body) {
+  var khanResp = result;
+  if (error) {
+    console.log(error);
+  }
+  else {
+    console.log(JSON.stringify(result, null, 5));
+    
+    
+    
+
+    //this rendering should only be done after all results are gathered
+    json_body = JSON.stringify(khanResp);
+    json_parsed = JSON.parse(json_body);
+    console.log(json_body);
+    for (var i = 0; i < 5; i++) { 
+      var khanUrl = "https://www.youtube.com/embed/" + json_parsed.items[i].id.videoId;
+      var khanTitle = json_parsed.items[i].snippet.title;
+      var khanDescr = json_parsed.items[i].snippet.description; 
+
+      results.push(["Khan Academy: " + khanTitle, khanUrl, khanDescr]);
+    }
+    ;
+        
+    }});
  }
 
 //Coursera 
