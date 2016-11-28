@@ -100,10 +100,6 @@ if(options[i] === 'youtube'){
   else {
     console.log(JSON.stringify(result, null, 5));
     
-    
-    
-
-    //this rendering should only be done after all results are gathered
     json_body = JSON.stringify(khanResp);
     json_parsed = JSON.parse(json_body);
     console.log(json_body);
