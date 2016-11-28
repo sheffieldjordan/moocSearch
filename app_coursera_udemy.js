@@ -102,7 +102,6 @@ app.post('/', function(req,res,next){
     //Check if this MOOC provider is checked
     if(options[i] === 'udemy'){
       console.log("Search Udemy");
-      var udemy_results = [];
       // const CLIENT_AUTH = new Buffer('Si9ikvjcO6kpHyPMjLK8od6vNiwNTKBD3uo70gLO:ZPb5VDWWfvOQtAIjmsHiU10Yk1RR7LZ0hwGT0fqQG34TdUWUSon9IRrPdlmZb47DN4foFWB5kxZZiV7Cng1BwKscSbX20jEnlEuh8Gm26ejBQg5opzcyXHnb2TJ6m8WB').toString('base64');
       // const ENDPOINT_URL = 'https://www.udemy.com/';
 
@@ -119,13 +118,14 @@ app.post('/', function(req,res,next){
               //console.log(response.statusCode);
               json_body = JSON.parse(body);
               // console.log(json_body);
-              var name = json_body.results[0].title;
-              var courseUrl = 'https://www.udemy.com' + json_body.results[0].url;
-              var imageUrl = json_body.results[0].image_125_H;
-              var description = json_body.results[0].description;
-              //console.log(name, courseUrl, imageUrl);
-              udemy_results.push(name, courseUrl, imageUrl);
-              results.push(udemy_results);
+              for(var i=0; i<5; i++) {
+                var name = json_body.results[i].title;
+                var courseUrl = 'https://www.udemy.com' + json_body.results[i].url;
+                var imageUrl = json_body.results[i].image_125_H;
+                var description = json_body.results[i].description;
+                //console.log(name, courseUrl, imageUrl);
+                results.push(["COURSECOUNTING1", name, courseUrl, imageUrl, description]);
+              };
               //console.log(results);
             }
 
@@ -168,14 +168,15 @@ app.post('/', function(req,res,next){
               //console.log(response.statusCode);
               json_body = JSON.parse(body);
               //console.log(json_body);
-              var name = json_body.elements[0].name;
-              var courseUrl = json_body.elements[0].previewLink;
-              var imageUrl = json_body.elements[0].photoUrl;
-              var description = json_body.elements[0].description;
-              //console.log(name, courseUrl, imageUrl, description);
-              coursera_results.push(name, courseUrl, imageUrl, description);
-              results.push(coursera_results);
-              //console.log(results);
+              for(var i=0; i<5; i++) {
+                var name = json_body.elements[i].name;
+                var courseUrl = json_body.elements[i].previewLink;
+                var imageUrl = json_body.elements[i].photoUrl;
+                var description = json_body.elements[i].description;
+                //console.log(name, courseUrl, imageUrl, description);
+                results.push(["COURSECOUNTING2", name, courseUrl, imageUrl, description]);
+                };
+                //console.log(results);
           }
 
           //Check if we're the last task?
