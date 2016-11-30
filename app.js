@@ -1,7 +1,7 @@
   /******NO NEED TO MODIFY ****/
 var express = require('express'); // Adding the express library 
 var mustacheExpress = require('mustache-express'); // Adding mustache templating system and connecting it to 
-var request = require('request')  // Adding the request library (to make HTTP reqeusts from the server);
+var request = require('request');  // Adding the request library (to make HTTP reqeusts from the server);
 var tools = require('./tools.js'); // Custom module providing additional functionality to the server
 var bodyParser = require('body-parser');
 
@@ -34,8 +34,8 @@ app.get('/', function (req, res, next) {
 app.post('/', function(req,res,next){
   var name = req.body.name;
   var courses = req.body.courses;
-  var options = req.body.searchoptions
-  var results = [] //array to add up all results (can also be a different format, what works best)
+  var options = req.body.searchoptions;
+  var results = []; //array to add up all results (can also be a different format, what works best)
   
   console.log("Variables");
   console.log(name);
@@ -150,16 +150,16 @@ app.post('/', function(req,res,next){
           console.log(error);
         }
         else {
-          console.log(JSON.stringify(result, null, 5));
+          //console.log(JSON.stringify(result, null, 5));
           json_body = JSON.stringify(khanResp);
           json_parsed = JSON.parse(json_body);
-          console.log(json_body);
+          //console.log(json_body);
           for (var i = 0; i < 5; i++) {
             var khanUrl = "https://www.youtuble.com/embed/" + json_parsed.items[i].id.videoId;
             var khanTitle = json_parsed.items[i].snippet.title;
             var khanDescr = json_parsed.items[i].snippet.description;
             results.push(["Khan Academy: " + khanTitle, khanUrl, khanDescr]);
-          };
+          }
         }
       //Check if this is the last search task before rendering all the results?
         if (async_tokens === 1) {
@@ -194,7 +194,7 @@ app.post('/', function(req,res,next){
                 var description = json_body.elements[i].description;
                 //console.log(name, courseUrl, imageUrl, description);
                 results.push(["Coursera: " + name, courseUrl, imageUrl, description]);
-                };
+                }
                 //console.log(results);
           }
 
@@ -211,6 +211,27 @@ app.post('/', function(req,res,next){
      if(options[i] === 'udacity'){
       console.log("Search Udacity");
       console.log(i);
+      request({
+        url: 'http://localhost:3001/udacity?title=' + courses,
+        method: 'GET',
+          }, function(error, response, body){
+            if(error) {
+              console.log(error);
+            } else {
+              //console.log(response.statusCode);
+              json_body = JSON.parse(body);
+              // console.log(json_body);
+              for(var i=0; i<5; i++) {
+                var name = json_body.title;
+                var courseUrl = json_body.homepage;
+                // var imageUrl = json_body.image;
+                var description = json_body.short_summary;
+                //console.log(name, courseUrl, imageUrl);
+                results.push(["Udacity: " + name, courseUrl, description]);
+              }
+                console.log(results);
+              }
+          })
       //Add request to API here
 
         //Check if this is the last search task before rendering all the results?
@@ -219,9 +240,9 @@ app.post('/', function(req,res,next){
         }
         async_tokens--;   //One Task done: decrements the token.
      }
-
-  //End For-loop
   }
+  //End For-loop
+  
 
 
   //???The codes below probably won't render anything, because Nodejs is asynchronous, so it renders empty results before the steps above get results back.
@@ -231,6 +252,7 @@ app.post('/', function(req,res,next){
 });
 
 // Start up server on port 3000 on host localhost
+
 var server = app.listen(3000, function () {
   var port = server.address().port;
 
