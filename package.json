@@ -5,18 +5,18 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kayashaolu/webarch-assign-2.git"
+    "url": "git+https://github.com/sheffieldjordan/moocSearch"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kayashaolu/webarch-assign-2/issues"
+    "url": "https://github.com/sheffieldjordan/moocSearch/issues"
   },
-  "homepage": "https://github.com/kayashaolu/webarch-assign-2#readme",
+  "homepage": "https://github.com/sheffieldjordan/moocSearch#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
     "cookie-parser": "^1.4.3",
