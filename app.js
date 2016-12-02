@@ -229,7 +229,8 @@ app.post('/', function(req,res,next){
       console.log("Search Udacity");
       console.log(i);
       request({
-        url: 'http://localhost:3001/udacity?title=' + courses,
+        //http://localhost:3001/udacity
+        url: 'https://peaceful-springs-13283.herokuapp.com/?title=' + courses,
         method: 'GET',
           }, function(error, response, body){
             if(error) {

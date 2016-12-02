@@ -66,7 +66,7 @@ db.all("SELECT title,short_summary,homepage FROM udacity WHERE title LIKE ?","%"
 
 });
 
-var server = app.listen(3001, function() {
+var server = app.listen(process.env.PORT || 3001, function() {
   console.log('Server on localhost listening on port 3001');
 });
 // curl -H "Content-Type: application/json" -X POST --data '@/Users/sanaiqbal/Desktop/webarchitecture/project/mooc/udacity.json' http://localhost:3001/udacityData//curl -vX POST http://localhost:3001/udacityData '@PATH/udacity.json' --header "Content-Type: application/json"
