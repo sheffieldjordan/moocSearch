@@ -156,7 +156,7 @@ app.post('/', function(req,res,next){
           json_parsed = JSON.parse(json_body);
           //console.log(json_body);
           for (var i = 0; i < 5; i++) {
-            var khanUrl = "https://www.youtuble.com/embed/" + json_parsed.items[i].id.videoId;
+            var khanUrl = "https://www.youtube.com/embed/" + json_parsed.items[i].id.videoId;
             var khanTitle = json_parsed.items[i].snippet.title;
             var khanDescr = json_parsed.items[i].snippet.description;
             results.push(["Khan Academy: " + khanTitle, khanUrl, khanDescr]);
