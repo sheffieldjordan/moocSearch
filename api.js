@@ -52,13 +52,15 @@ app.get('/udacity', function (req, res) {
  // db.all("SELECT * FROM udacity", function(err, row) {  
 // ----
 db.all("SELECT title,short_summary,homepage FROM udacity WHERE title LIKE ?","%"+searchword+"%", function(err, rows) {  
-        rows.forEach(function (row) {  
-        console.log(row.title);  
-         res.json({"title": row.title,
-        "homepage":row.homepage,"short_summary":row.short_summary});
-        })  
+        // rows.forEach(function (row) {  
+        // console.log(row.title);  
+        //  res.json({"title": row.title,
+        // "homepage":row.homepage,"short_summary":row.short_summary});
+        // })  
+        console.log(rows);
+        res.json(rows)
     });   
-db.close(); 
+//db.close(); 
 
 
 

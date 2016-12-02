@@ -124,7 +124,7 @@ app.post('/', function(req,res,next){
               for(var i=0; i<5; i++) {
                 var name = json_body.results[i].title;
                 var courseUrl = 'https://www.udemy.com' + json_body.results[i].url;
-                var imageUrl = json_body.results[i].image_125_H;
+                var imageUrl = json_body.results[i].image_480x270;
                 var description = json_body.results[i].description;
                 //console.log(name, courseUrl, imageUrl);
                 results_image.push(["Udemy: " + name, courseUrl, imageUrl, description]);
@@ -222,12 +222,14 @@ app.post('/', function(req,res,next){
             } else {
               //console.log(response.statusCode);
               json_body = JSON.parse(body);
-              // console.log(json_body);
-              for(var i=0; i<5; i++) {
-                var name = json_body.title;
-                var courseUrl = json_body.homepage;
+              console.log("THIS IS THE UDATICYT RESULT!!!!!!!");
+              
+              for(var i in json_body) {
+                var name = json_body[i].title;
+
+                var courseUrl = json_body[i].homepage;
                 // var imageUrl = json_body.image;
-                var description = json_body.short_summary;
+                var description = json_body[i].short_summary;
                 //console.log(name, courseUrl, imageUrl);
                 results_image.push(["Udacity: " + name, courseUrl,'http://admin.imbresources.org/photos/noImageFound.l.png',description]);
               }
