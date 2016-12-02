@@ -74,12 +74,19 @@ app.post('/', function(req,res,next){
           //console.log(JSON.stringify(result, null, 5));
           json_body = JSON.stringify(youTubeResp);
           json_parsed = JSON.parse(json_body);
-          for(var i = 0; i < 5; i++) {
+          if (json_parsed.pageInfo.totalResults == 0){
+            console.log("RETURNED NO RESULTSSSSSSSSSSSSSSS!!!!");
+            
+          }
+          else{
+             for(var i = 0; i < 5; i++) {
             var youTubeUrl = "https://www.youtube.com/embed/" + json_parsed.items[i].id.videoId;
             var youTubeTitle = json_parsed.items[i].snippet.title;
             var youTubeDescr = json_parsed.items[i].snippet.description;
             results.push(["YouTube: " + youTubeTitle, youTubeUrl, youTubeDescr]);
           }
+          }       
+         
         }
       //Check if this is the last search task before rendering all the results?
         if (async_tokens === 1) {
@@ -121,6 +128,7 @@ app.post('/', function(req,res,next){
               //console.log(response.statusCode);
               json_body = JSON.parse(body);
               // console.log(json_body);
+              
               for(var i=0; i<5; i++) {
                 var name = json_body.results[i].title;
                 var courseUrl = 'https://www.udemy.com' + json_body.results[i].url;
@@ -155,12 +163,17 @@ app.post('/', function(req,res,next){
           json_body = JSON.stringify(khanResp);
           json_parsed = JSON.parse(json_body);
           //console.log(json_body);
+          if (json_parsed.pageInfo.totalResults == 0){
+            console.log("RETURNED NO RESULTSSSSSSSSSSSSSSS!!!!");
+            
+          }
+          else {
           for (var i = 0; i < 5; i++) {
             var khanUrl = "https://www.youtube.com/embed/" + json_parsed.items[i].id.videoId;
             var khanTitle = json_parsed.items[i].snippet.title;
             var khanDescr = json_parsed.items[i].snippet.description;
             results.push(["Khan Academy: " + khanTitle, khanUrl, khanDescr]);
-          }
+          }}
         }
       //Check if this is the last search task before rendering all the results?
         if (async_tokens === 1) {
@@ -187,8 +200,10 @@ app.post('/', function(req,res,next){
           } else {
               //console.log(response.statusCode);
               json_body = JSON.parse(body);
-              //console.log(json_body);
-              for (var i = 0; i < 5; i++) {
+              console.log(json_body);
+              
+
+              for (var i in json_body.elements) {
                 var name = json_body.elements[i].name;
                 var courseUrl = json_body.elements[i].previewLink;
                 var imageUrl = json_body.elements[i].photoUrl;
