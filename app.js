@@ -150,24 +150,30 @@ app.post('/', function(req,res,next){
         if (error) {
           console.log(error);
         }
+        
+        json_body = JSON.stringify(khanResp);
+        json_parsed = JSON.parse(json_body);
+        console.log(json_body);
+          
+        if (json_parsed.pageInfo.totalResults === 0) {
+          console.log("Khan Academy returned nothing");
+        }
         else {
           //console.log(JSON.stringify(result, null, 5));
-          json_body = JSON.stringify(khanResp);
-          json_parsed = JSON.parse(json_body);
-          //console.log(json_body);
+          
           for (var i = 0; i < 5; i++) {
             var khanUrl = "https://www.youtube.com/embed/" + json_parsed.items[i].id.videoId;
             var khanTitle = json_parsed.items[i].snippet.title;
             var khanDescr = json_parsed.items[i].snippet.description;
             results.push(["Khan Academy: " + khanTitle, khanUrl, khanDescr]);
-          }
-        }
+          }}
+        });
       //Check if this is the last search task before rendering all the results?
         if (async_tokens === 1) {
           res.render("home.html", {'results': results,'results_image': results_image});
         }
         async_tokens--;   //One Task done: decrements the token.
-      });
+      }
     }
 
     // Coursera 
@@ -235,7 +241,7 @@ app.post('/', function(req,res,next){
               }
                 console.log(results);
               }
-          })
+          });
       //Add request to API here
 
         //Check if this is the last search task before rendering all the results?
@@ -244,7 +250,7 @@ app.post('/', function(req,res,next){
         }
         async_tokens--;   //One Task done: decrements the token.
      }
-  }
+  
   //End For-loop
   
 
@@ -257,7 +263,7 @@ app.post('/', function(req,res,next){
 
 // Start up server on port 3000 on host localhost
 
-var server = app.listen(3000, function () {
+var server = app.listen(process.env.PORT || 3000, function () {
   var port = server.address().port;
 
   console.log('Assignment 3 server on localhost listening on port ' + port + '!');
