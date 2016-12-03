@@ -1,69 +1,135 @@
+* {
+    box-sizing: border-box;
+}
+.row::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+}
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+html {
+   /* font-family: "Lucida Sans", sans-serif;*/
+   font-family:"Open Sans";
+}
+.header {
+    background-color: #8BF1Df;
+    color: white;
+    padding: 15px;
+}
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.menu li {
+    padding: 8px;
+    margin-bottom: 7px;
+    background-color: white;
+    color: black;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+.menu li:hover {
+    background-color: #D8D8D8;
+}
+
+
+
 header {
-	font-family: Arial;
-	color:red;
-	font-size:10px;
-}
 
-h1 {
-	font-family: Arial;
-	color:red;
-	font-size:32px
-}
+    padding: 1em;
+    color: white;
+    background-color: #5FB7F2;
+    clear: left;
 
-h2 {
-	font-family: Arial;
-	color:blue;
-	font-style: italic;
-}
 
-div {
-	font-weight: bold;
-	font-family: Arial;
-	color:red;
 }
 
 footer {
-	font-family: Arial;
-	font-size:10px;
-}
 
-#namelabel {
-	font-family:sans-serif;
-}	
+    padding: 1em;
+    color: white;
+    background-color: #8BF1Df;
+    clear: left;
 
-#subjectlabel {
-	font-family:sans-serif;
-}
-
-#messagelabel {
-	font-family:sans-serif;
 
 }
+body{
+  background-color: #ffefd5;
+  font-family:"Open Sans";
+}
 
-#email {
-	font-family: sans-serif;
+h1{
+  color:white;
+  text-align: center;
+  }
+
+h3{
+  text-align: left;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+}
+li.header_footer {
+
+ float: left;
+ display: inline-block;
+ padding: 1em;
+}
+
+li.header_footer:hover {
+background-color: #5CCCC0;
+}
+
+/*nav {
+   font-family:"Open Sans";
+    float: left;
+    max-width: 160px;
+    margin: 10px;
+    padding: 1em;
+    padding-top: 10px
+ 
+}
+   */
+
+div.search_bar{
+
+  text-align: center;
+    border-left: 1px solid gray;
+    padding: 1em;
+    overflow: hidden;
+    /*background-color: Azure;*/
+    margin: 170px
+    border-right: 1px solid gray;
 }
 
 
-.blogpost {
-	font-family:sans-serif;
-	text-decoration:none;
-}
 
-li {
-	border: 1px solid black;
-
+#list{
+ font-size: 14px
 }
 
 
-em {
-    font-weight: bold;
-    color: blue;
-    font-size: 18px;
-}
 
-a:hover {
-	color: #cc0000;
-	font-weight: bold;
-	text-decoration: none;
-}
+
+
+

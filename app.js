@@ -36,7 +36,8 @@ app.post('/', function(req,res,next){
   var courses = req.body.courses;
   var options = req.body.searchoptions;
   var results = []; //array to add up all results (can also be a different format, what works best)
-  
+  var results_image = [];
+
   console.log("Variables");
   console.log(name);
   console.log(courses);
@@ -82,7 +83,7 @@ app.post('/', function(req,res,next){
         }
       //Check if this is the last search task before rendering all the results?
         if (async_tokens === 1) {
-          res.render("home.html", {'results': results});
+          res.render("home.html", {'results': results,'results_image': results_image});
         }
         async_tokens--;   //One Task done: decrements the token.
       });
@@ -126,14 +127,14 @@ app.post('/', function(req,res,next){
                 var imageUrl = json_body.results[i].image_125_H;
                 var description = json_body.results[i].description;
                 //console.log(name, courseUrl, imageUrl);
-                results.push(["Udemy: " + name, courseUrl, imageUrl, description]);
+                results_image.push(["Udemy: " + name, courseUrl, imageUrl, description]);
               }
               //console.log(results);
             }
 
             //Check if this is the last search task before rendering all the results?
             if (async_tokens === 1) {
-              res.render("home.html", {'results': results});
+              res.render("home.html", {'results': results,'results_image': results_image});
             }
             async_tokens--;   //One Task done: decrements the token.
       });
@@ -163,7 +164,7 @@ app.post('/', function(req,res,next){
         }
       //Check if this is the last search task before rendering all the results?
         if (async_tokens === 1) {
-          res.render("home.html", {'results': results});
+          res.render("home.html", {'results': results,'results_image': results_image});
         }
         async_tokens--;   //One Task done: decrements the token.
       });
@@ -193,14 +194,15 @@ app.post('/', function(req,res,next){
                 var imageUrl = json_body.elements[i].photoUrl;
                 var description = json_body.elements[i].description;
                 //console.log(name, courseUrl, imageUrl, description);
-                results.push(["Coursera: " + name, courseUrl, imageUrl, description]);
+                results_image.push(["Coursera: " + name, courseUrl, imageUrl, description]);
                 }
-                //console.log(results);
+                console.log(results);
+                console.log(results_image);
           }
 
           //Check if this is the last search task before rendering all the results?
           if (async_tokens === 1) {
-            res.render("home.html", {'results': results});
+            res.render("home.html", {'results': results,'results_image': results_image});
           }
           async_tokens--;   //One Task done: decrements the token.
       });
@@ -227,7 +229,7 @@ app.post('/', function(req,res,next){
                 // var imageUrl = json_body.image;
                 var description = json_body.short_summary;
                 //console.log(name, courseUrl, imageUrl);
-                results.push(["Udacity: " + name, courseUrl, description]);
+                results_image.push(["Udacity: " + name, courseUrl,'http://admin.imbresources.org/photos/noImageFound.l.png',description]);
               }
                 console.log(results);
               }
@@ -236,7 +238,7 @@ app.post('/', function(req,res,next){
 
         //Check if this is the last search task before rendering all the results?
         if (async_tokens === 1) {
-          res.render("home.html", {'results': results});
+          res.render("home.html", {'results': results,'results_image': results_image});
         }
         async_tokens--;   //One Task done: decrements the token.
      }

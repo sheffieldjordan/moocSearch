@@ -1,18 +1,33 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Project - moocSearch </title>
-		<script type="text/javascript" src="static/js/script.js"></script>
-		<link rel="stylesheet" href="static/css/style.css">
+		<title>MOOCS Buffet</title>
+        <meta name="author" content="Priyanka" />
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <link rel= "stylesheet" href="/static/css/style.css" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
 	</head>
-	<body>
-		<header>
+<body>
+<div class = "header">
+   <!--  <a href="#">About</a>
+    <a href="#">Contact Us</a> -->
+     <ul id = 'list'>
+      <li class = 'header_footer'><a href="http://localhost:3000/index">Home</a></li>
+      <li class = 'header_footer'><a href="http://localhost:3000/about">About</a></li>
+      <li class = 'header_footer'><a href="http://localhost:3000/contact">Contact Us</a></li>
+ 
+  </ul>
 
-		</header>
+</div>
+<div class="header">
+  <h1>Project - moocSearch </h1>
+</div>
 
-<!--Implement form elements here (id searchForm)-->
-		<form action="/" method="POST" id="searchForm">
+<div class="row">
+
+<div class="col-3 menu">
+  <form action="/" method="POST" id="searchForm">
 			<label>Name: </label>
 			<input type="text" name="name" /><br>
 			<label>Query: </label>
@@ -26,14 +41,54 @@
 			<input type="checkbox" name="searchoptions" value="khanAcademy" checked />Khan Academy<br>
 			<input type="submit" value="Submit" id="submit"/>
 		</form>
+</div>
 
-<!--Add mustache variables for results -->		
-		
-		<div id="results">{{{results}}}</div>
-		<footer>
+<div class="col-9 menu">
+<ul>
+{{#results}}
+<li>
+<p><strong>{{0}}</strong></p>
+<iframe width="420" height="345" src= {{1}} >
+</iframe></br>
+<span><strong>Description:</strong> {{2}} </span>
+</br>	
+</li>
+{{/results}}
+</ul>
 
-		</footer>
+
+<ul>
+{{#results_image}}
+<li>
+<p><strong>{{0}}</strong></p>
+
+
+
+<img src= {{2}} alt="No image" style="width:420px;height:345px;"></br>
+<span><strong>Course url</strong> {{1}} </span></br>
+
+<span><strong>Description:</strong> {{3}} </span>
+</br>	
+</li>
+{{/results_image}}
+</ul>
+
+
+</div>
+
+</div>
+
+	
+
+<footer>
+    
+    <ul id = 'list'>
+      <li class = 'header_footer'><a href="http://localhost:3000/index">Home</a></li>
+      <li class = 'header_footer'><a href="http://localhost:3000/about">About</a></li>
+      <li class = 'header_footer'><a href="http://localhost:3000/contact">Contact Us</a></li>
+ 
+    </ul>
+</footer>
 		
 	</body>
 </html>
-	
