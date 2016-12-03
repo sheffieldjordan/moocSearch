@@ -22,20 +22,18 @@
 .col-10 {width: 83.33%;}
 .col-11 {width: 91.66%;}
 .col-12 {width: 100%;}
+
 html {
    /* font-family: "Lucida Sans", sans-serif;*/
    font-family:"Open Sans";
 }
-.header {
-    background-color: #8BF1Df;
-    color: white;
-    padding: 15px;
-}
+
 .menu ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
+
 .menu li {
     padding: 8px;
     margin-bottom: 7px;
@@ -43,6 +41,7 @@ html {
     color: black;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
+
 .menu li:hover {
     background-color: #D8D8D8;
 }
@@ -50,26 +49,34 @@ html {
 
 
 header {
-
-    padding: 1em;
+    padding: 0.3em 0;
     color: white;
-    background-color: #5FB7F2;
+    font-weight: bold;
+    background-color: rgba(21, 29, 70, 0.86);
     clear: left;
-
-
 }
+
+.headline {
+    background-color: rgba(21, 29, 70, 0.86);
+    color: white;
+    padding-bottom: 1.5em;
+}
+
+.headline h1 {
+  margin: 0;
+}
+
 
 footer {
-
-    padding: 1em;
+    padding: 0.3em 0;
     color: white;
-    background-color: #8BF1Df;
+    font-weight: bold;
+    background-color: rgba(21, 29, 70, 0.86);
     clear: left;
-
-
 }
+
 body{
-  background-color: #ffefd5;
+  background-color: #fff;
   font-family:"Open Sans";
 }
 
@@ -89,6 +96,7 @@ ul {
   overflow: hidden;
 
 }
+
 li.header_footer {
 
  float: left;
@@ -96,8 +104,12 @@ li.header_footer {
  padding: 1em;
 }
 
-li.header_footer:hover {
-background-color: #5CCCC0;
+li.header_footer a {
+  color: #fff;
+}
+
+li.header_footer a:hover {
+  background-color: #5CCCC0;
 }
 
 /*nav {
@@ -128,8 +140,33 @@ div.search_bar{
  font-size: 14px
 }
 
+#submit {
+  margin: 1.5em 0;
+  font-size: 1em;
+  background: #eeeeee;
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em;
+  border-radius: 1em;
+  border: 1px solid #cecece;
+}
+
+#query_bar {
+  padding: 0.1em 3em 0.1em 0.1em;
+  margin: 1em 0;
+  font-size: 1em;
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em;
+  border-radius: 1em;
+  background: #eeeeee;
+  color: #000;
+  border: 1px solid #cecece;
+  text-indent: 10px;
+}
 
 
+textarea:focus, input:focus{
+    outline: none;
+}
 
 
 
