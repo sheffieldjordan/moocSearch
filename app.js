@@ -309,11 +309,10 @@ app.post('/', function(req,res,next){
 
 });
 
-// Start up server on port 3000 on host localhost
+// Start up server on heroku host or localhost 3000
 
 var server = app.listen(process.env.PORT || 3000, function () {
   var port = server.address().port;
 
-  console.log('Assignment 3 server on localhost listening on port ' + port + '!');
-  console.log('Open up your browser (within your VM) and enter the URL "http://localhost:' + port + '" to view your website!');
+  console.log('Group project webserver listening on port ' + port + '!');
 });
