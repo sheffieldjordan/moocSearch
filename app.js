@@ -45,8 +45,7 @@ app.post('/', function(req,res,next){
   console.log(results);
 
   if (typeof options === 'undefined') {
-    results.push("Please select one of the options");
-    res.render("home.html", {'results': results,'results_image': results_image});
+    res.render("home.html");
   }
 
   //Ensure that options always remains an array.
