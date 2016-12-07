@@ -285,7 +285,7 @@ app.post('/', function(req,res,next){
                 // var imageUrl = json_body.image;
                 var description = json_body[i].short_summary;
                 //console.log(name, courseUrl, imageUrl);
-                results_image.push(["Udacity: " + name, courseUrl,'http://admin.imbresources.org/photos/noImageFound.l.png',description]);
+                results_image.push(["Udacity: " + name, courseUrl,'https://s3.amazonaws.com/accredible-cdn/udacity/udacity_seo.jpg',description]);
               }
                 console.log(results);
             }
