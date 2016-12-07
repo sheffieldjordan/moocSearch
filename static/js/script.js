@@ -1,41 +1,15 @@
-/* add function for required fields in query form */
+var searchForm = document.querySelectorAll("#searchForm")[0];
+if(searchForm != null){ 
+searchForm.addEventListener("submit", function(event){
+	var query = searchForm.elements.namedItem("courses").value;
+	
+	var popupText = "";
 
-
-function processForm(){  
-
-var empt = document.forms["contactForm"]["personsName"].value;  
-	if (empt == ""){  
-		document.getElementById("nameRequired").innerHTML = "***Name Field Required***";  
-	  	} 
-	else{  
-		document.getElementById("nameRequired").innerHTML = "";  
-		}
-
-var subjField = document.forms["contactForm"]["subject"].value;  
-	if (subjField == ""){  
-	document.getElementById("subjectRequired").innerHTML = "***Subject Field Required***";  
+	if(courses === ""){
+		popupText = "Please enter a query";
+		event.preventDefault();
 	}
-	else   
-	{  
-	document.getElementById("subjectRequired").innerHTML = "";  
-} 
-
-var msgField = document.forms["contactForm"]["message"].value;  
-	if (msgField == "") {  
-	document.getElementById("messageRequired").innerHTML = "***Message Field Required***";  
-	}
-	else   
-	{  
-	document.getElementById("messageRequired").innerHTML = "";
-	} 
-
-var emailField = document.forms["contactForm"]["email"].value;  
-	if (emailField == ""){  
-	document.getElementById("emailRequired").innerHTML = "***Email Address Required***";  
-	}
-	else   
-	{  
-	document.getElementById("messageRequired").innerHTML = "";  
-	} 
-}  
+	document.getElementById("required").innerHTML = popupText;	
+	});
+}
 
