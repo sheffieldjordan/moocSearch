@@ -35,7 +35,7 @@ app.post('/', function(req,res,next){
   var name = req.body.name;
   var courses = req.body.courses;
   var options = req.body.searchoptions;
-  var results = []; //array to add up all results (can also be a different format, what works best)
+  var results = [];
   var results_image = [];
 
   console.log("Variables");
@@ -44,9 +44,8 @@ app.post('/', function(req,res,next){
   console.log(options);
   console.log(results);
 
-  if (typeof options === 'undefined') {
-    res.render("home.html");
-  }
+  //if (typeof options === 'undefined') {
+  //  res.render("home.html"); }
 
   //Ensure that options always remains an array.
   if (! Array.isArray(options)) {
