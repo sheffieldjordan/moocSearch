@@ -15,6 +15,9 @@ searchForm.addEventListener("submit", function(event){
 	else if(options === ""){
 		popupText = "Please check the Moocs database you want to search";
 	}
+	else{
+		popupText = "";
+	}
 	document.getElementById("required").innerHTML = popupText;	
 	});
 }
