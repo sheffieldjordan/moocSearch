@@ -134,12 +134,6 @@ div.search_bar{
     border-right: 1px solid gray;
 }
 
-
-#required{
-  margin: 1em 1em 0 1em;
-  color: red;
-}
-
 #list{
  font-size: 14px
 }
