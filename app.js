@@ -44,8 +44,10 @@ app.post('/', function(req,res,next){
   console.log(options);
   console.log(results);
 
-  //if (typeof options === 'undefined') {
-  //  res.render("home.html"); }
+  if (typeof options === 'undefined') {
+    results.push(["Please choose the MOOCs databases you want to search"]);
+    res.render("home.html", {'results': results}); 
+  }
 
   //Ensure that options always remains an array.
   if (! Array.isArray(options)) {
