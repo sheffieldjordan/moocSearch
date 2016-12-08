@@ -13,10 +13,12 @@ searchForm.addEventListener("submit", function(event){
 		event.preventDefault();
 	}
 	else if(options === ""){
-		popupText = "Please check the Moocs database you want to search";
+		popupText += '\n' + "Please check the Moocs database you want to search";
+		event.preventDefault();
 	}
 	else{
 		popupText = "";
+		event.preventDefault();
 	}
 	document.getElementById("required").innerHTML = popupText;	
 	});
