@@ -63,6 +63,7 @@ header {
 }
 
 .headline h1 {
+  font-size: 35px;
   margin: 0;
 }
 
@@ -151,7 +152,7 @@ div.search_bar{
 }
 
 #query_bar {
-  padding: 0.1em 3em 0.1em 0.1em;
+  padding: 0.3em 3em 0.3em 0.1em;
   margin: 1em 0;
   font-size: 1em;
   -webkit-border-radius: 1em;
@@ -168,5 +169,15 @@ textarea:focus, input:focus{
     outline: none;
 }
 
+li>p>strong {
+  display: block;
+  color: #fff;
+  background-color: #131353;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.3em 0.4em;
+  border: 1px solid rgba(27, 127, 204, 0.9);
+  border-radius: 0.6em;
+}
 
 
