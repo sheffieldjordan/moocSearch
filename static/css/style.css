@@ -125,7 +125,6 @@ li.header_footer a:hover {
    */
 
 div.search_bar{
-
   text-align: center;
     border-left: 1px solid gray;
     padding: 1em;
@@ -136,6 +135,10 @@ div.search_bar{
 }
 
 
+#required{
+  margin: 1em 1em 0 1em;
+  color: red;
+}
 
 #list{
  font-size: 14px
@@ -153,7 +156,7 @@ div.search_bar{
 
 #query_bar {
   padding: 0.3em 3em 0.3em 0.1em;
-  margin: 1em 0;
+  margin: 0 0 1em 0;
   font-size: 1em;
   -webkit-border-radius: 1em;
   -moz-border-radius: 1em;
