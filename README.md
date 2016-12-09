@@ -1,13 +1,11 @@
 # moocSearch
-Web Arch Final Project
+Info 253 Web Architecture - Final Group Project
 
-YouTube
-CourseEra
+This is the Github Repository of MoocSearch.
 
-Udacity
-EdX
-
-Codecademy
-Khan Academy
-
-Udemy
+Students:
+Morgan Jordan
+Jolly Liang
+Priyanka Patki
+Sana Iqbal
+Milou Feijt
